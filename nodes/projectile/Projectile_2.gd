@@ -1,21 +1,20 @@
-extends KinematicBody2D
+extends RigidBody2D
 
-var gravity: float = 1000
-var velocity: Vector2 = Vector2()
-var speed: float = 750
-var jumpPower: float = 50000
-var shootPowerX: float = 150000
-var shootPowerY: float = 50000
 var catapult: Area2D = null
 var _isCollingWithCatapult: bool = false
-var friction = 0.05
+var jumpPower: float = 750
+var shootPower: float = 70
 
-func _physics_process(delta):
-	velocity.y += gravity * delta
-	if (is_on_floor() && GameStatus.isShooted):
-		velocity.x *= lerp(1, 0, friction)
-	#rotation = velocity.normalized().angle()
-	velocity = move_and_slide(velocity, Vector2.UP)
+func _ready():
+	pass # Replace with function body.
+
+func _process(delta):
+	pass
+	#print(linear_velocity.normalized())
+	
+func _integrate_forces(state):
+	# limitate rotation of the right side
+	rotation = clamp(rotation, deg2rad(0), deg2rad(180))
 
 func spawn(pos: Vector2, dir: float, _catapult: Area2D):
 	rotation = dir
@@ -25,13 +24,11 @@ func spawn(pos: Vector2, dir: float, _catapult: Area2D):
 	catapult.connect("body_exited", self, "_on_Catapult_body_exited")
 
 func jump(delta) -> void:
-	velocity.y -= jumpPower * delta
+	apply_impulse(Vector2.ZERO, Vector2.UP * jumpPower)
 	
 func shoot(delta) -> void:
 	var direction: Vector2 = (position - catapult.position).normalized()
-	velocity = direction
-	velocity.x += shootPowerX * delta
-	velocity.y *= shootPowerY * delta
+	apply_impulse(Vector2.ZERO, direction.normalized() * jumpPower)
 
 func _on_Catapult_body_entered(body: Node2D) -> void:
 	var direction: Vector2 = (position - catapult.position).normalized()

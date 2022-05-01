@@ -1,14 +1,14 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://ASSETS/ellipse_weiss.png" type="Texture" id=1]
-[ext_resource path="res://nodes/projectile/Projectile.gd" type="Script" id=2]
+[ext_resource path="res://nodes/projectile/Projectile_2.gd" type="Script" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 18.0
 height = 44.0
 
-[node name="Projectile" type="KinematicBody2D"]
-rotation = 1.5708
+[node name="Projectile_2" type="RigidBody2D"]
+gravity_scale = 5.0
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

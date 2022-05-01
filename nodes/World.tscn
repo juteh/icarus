@@ -47,3 +47,11 @@ margin_right = 192.0
 margin_bottom = 35.0
 rect_pivot_offset = Vector2( -270, -76 )
 text = "Distance: 8888"
+
+[node name="AngleLabel" type="Label" parent="CanvasLayer"]
+margin_left = 2.0
+margin_top = 38.0
+margin_right = 193.0
+margin_bottom = 54.0
+rect_pivot_offset = Vector2( -270, -76 )
+text = "Angle: 8888"
