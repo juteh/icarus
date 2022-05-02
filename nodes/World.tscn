@@ -20,6 +20,12 @@ texture = ExtResource( 2 )
 scale = Vector2( 15, 1 )
 shape = SubResource( 2 )
 
+[node name="CheckCollideArea" type="Area2D" parent="Ground"]
+
+[node name="CheckCollideShape" type="CollisionShape2D" parent="Ground/CheckCollideArea"]
+scale = Vector2( 15, 1 )
+shape = SubResource( 2 )
+
 [node name="SpawnPoint" type="Position2D" parent="."]
 position = Vector2( 123, 330 )
 rotation = 1.5708
@@ -55,3 +61,5 @@ margin_right = 193.0
 margin_bottom = 54.0
 rect_pivot_offset = Vector2( -270, -76 )
 text = "Angle: 8888"
+
+[connection signal="body_entered" from="Ground/CheckCollideArea" to="Catapult" method="_on_CheckCollideArea_body_entered"]

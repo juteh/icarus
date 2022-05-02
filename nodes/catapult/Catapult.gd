@@ -46,3 +46,10 @@ func spawnProjectile() -> void:
 	projectileInstance = Projectile2.instance()
 	projectileInstance.spawn(SpawnPoint.position, SpawnPoint.rotation, self)
 	get_parent().add_child(projectileInstance)
+
+
+func _on_CheckCollideArea_body_entered(body):
+	print(body.name)
+	if (GameStatus.isShooted && body.name == "Projectile_2"):
+		print("LANDED")
+		GameStatus.isLanded = true;

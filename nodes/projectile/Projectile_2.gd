@@ -5,12 +5,8 @@ var _isCollingWithCatapult: bool = false
 var jumpPower: float = 750
 var shootPower: float = 70
 
-func _ready():
-	pass # Replace with function body.
-
 func _process(delta):
 	pass
-	#print(linear_velocity.normalized())
 	
 func _integrate_forces(state):
 	# limitate rotation of the right side
