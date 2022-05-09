@@ -36,3 +36,6 @@ func _on_Catapult_body_exited(body: Node2D) -> void:
 	
 func isCollingWithCatapult() -> bool:
 	return _isCollingWithCatapult
+
+func destroy() -> void:
+	queue_free()
