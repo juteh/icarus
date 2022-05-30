@@ -15,11 +15,13 @@ func _ready():
 	scoreLabel.visible = false;
 
 func _process(_delta):
-	roundLabel.text = "Round " + str(GameStatus.landedProjectiles.size() + 1)
+	roundLabel.text = "Round " + str(GameStatus.projectileResults.size() + 1)
 	if (GameStatus.projectileInstance):
 		distanceLabelX.text = "Distance X: " + str(GameStatus.projectileInstance.position.x)
 		distanceLabelY.text = "Distance Y: " + str(GameStatus.projectileInstance.position.y)
 		angleLabel.text = "Angle: " + str(GameStatus.projectileInstance.rotation)
 	if (GameStatus.isLanded):
-		scoreLabel.text = "Es ist " + str(stepify(GameStatus.projectileInstance.position.x / 100, 0.01)) + "m geflogen!"
+		scoreLabel.text = str(stepify(GameStatus.projectileInstance.position.x / 100, 0.01)) + "m!"
 		scoreLabel.visible = true
+	else:
+		scoreLabel.visible = false
