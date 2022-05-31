@@ -26,7 +26,7 @@ margin_left = 2.0
 margin_top = 38.0
 margin_right = 193.0
 margin_bottom = 54.0
-rect_pivot_offset = Vector2( -270, -76 )
+rect_pivot_offset = Vector2( 26, 15 )
 text = "Angle: 8888"
 
 [node name="ScoreLabel" type="Label" parent="."]
@@ -43,3 +43,10 @@ margin_top = 3.0
 margin_right = 1024.0
 margin_bottom = 40.0
 text = "Runde 1"
+
+[node name="MaxFlapsLabel" type="Label" parent="."]
+margin_left = 840.0
+margin_top = 27.0
+margin_right = 923.0
+margin_bottom = 41.0
+text = "Max Flaps 10"

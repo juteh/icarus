@@ -7,6 +7,7 @@ export var weight: float = 1
 var isCollidingWithCatapult: bool = false
 var velocity = Vector2(0, 0)
 var isOnGround: bool = false
+var impulseAttempts: int = 11
 
 func _process(delta):
 	# initial and while is landed the projectile has no movement
@@ -23,7 +24,9 @@ func _process(delta):
 		velocity.y = 0
 
 func impulse() -> void:
-	velocity.y -= impulsePower
+	if (impulseAttempts > 0):
+		velocity.y -= impulsePower
+		impulseAttempts -= 1
 
 func jump() -> void:
 	velocity.y -= jumpPower
