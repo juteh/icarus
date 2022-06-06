@@ -1,9 +1,9 @@
 extends Area2D
 
 export var jumpPower: float = 400
-export var shootPower: float = 100
-export var impulsePower: float = 30
-export var weight: float = 1
+export var shootPower: float = 400
+export var impulsePower: float = 100
+export var weight: float = 3
 var isCollidingWithCatapult: bool = false
 var velocity = Vector2(0, 0)
 var isOnGround: bool = false
@@ -23,14 +23,22 @@ func _process(delta):
 	if (isOnGround && velocity.y > 0):
 		velocity.y = 0
 
+# projectile can make a little impulse to stay in the air longer
 func impulse() -> void:
 	if (impulseAttempts > 0):
 		velocity.y -= impulsePower
 		impulseAttempts -= 1
 
+# get boost from item
+func boost(boostPowerX: float = 0, boostPowerY: float = 0) -> void:
+	velocity.x += boostPowerX
+	velocity.y -= boostPowerY
+
+# the initial jump of the projectile to the catapult
 func jump() -> void:
 	velocity.y -= jumpPower
-	
+
+# triggers when catapult fires the projectile
 func shoot() -> void:
 	var direction: Vector2 = (position - GameStatus.catapult.position).normalized()
 	velocity += direction * shootPower
@@ -47,9 +55,10 @@ func _on_Catapult_body_exited(_body: Area2D) -> void:
 func _on_Ground_body_entered(_body: Area2D) -> void:
 	print("_on_Ground_body_entered")
 	isOnGround = true
+	if (GameStatus.isShooted):
+		GameStatus.isLanded = true
 	
 func _on_Ground_body_exited(_body: Area2D) -> void:
 	print("_on_Ground_body_exited")
 	isOnGround = false
-	if (GameStatus.isShooted):
-		GameStatus.isLanded = true
+	
