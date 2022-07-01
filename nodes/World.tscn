@@ -1,20 +1,19 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://nodes/catapult/Catapult.tscn" type="PackedScene" id=1]
 [ext_resource path="res://nodes/Ground/Ground.tscn" type="PackedScene" id=2]
-[ext_resource path="res://nodes/SpawnPoint.gd" type="Script" id=3]
+[ext_resource path="res://nodes/SpawnPointProjectile.gd" type="Script" id=3]
 [ext_resource path="res://nodes/GameUI/GameUI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://nodes/Items/SpeedItem/SpeedItem.tscn" type="PackedScene" id=5]
 [ext_resource path="res://nodes/Items/JumpBoard/JumpBoard.tscn" type="PackedScene" id=6]
 [ext_resource path="res://nodes/World.gd" type="Script" id=7]
+[ext_resource path="res://nodes/GroundManager.gd" type="Script" id=8]
 
 [node name="World" type="Node2D"]
 position = Vector2( 1, 3 )
 script = ExtResource( 7 )
 
-[node name="Ground" parent="." instance=ExtResource( 2 )]
-
-[node name="SpawnPoint" type="Position2D" parent="."]
+[node name="SpawnPointProjectile" type="Position2D" parent="."]
 position = Vector2( 123, 349 )
 rotation = 1.5708
 script = ExtResource( 3 )
@@ -43,3 +42,13 @@ position = Vector2( 1079, 58 )
 
 [node name="SpeedItem2" parent="Items" instance=ExtResource( 5 )]
 position = Vector2( 1162, 262 )
+
+[node name="Grounds" type="Node2D" parent="."]
+position = Vector2( 999, 470 )
+script = ExtResource( 8 )
+
+[node name="Ground" parent="Grounds" instance=ExtResource( 2 )]
+script = null
+
+[node name="SpawnPointGround" type="Position2D" parent="Grounds"]
+rotation = 1.5708

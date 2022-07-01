@@ -6,7 +6,6 @@ export var impulsePower: float = 100
 export var weight: float = 3
 var isCollidingWithCatapult: bool = false
 var velocity = Vector2(0, 0)
-var isOnGround: bool = false
 var impulseAttempts: int = 11
 
 func _process(delta):
@@ -20,7 +19,7 @@ func _process(delta):
 		rotation = velocity.angle()
 		if (Input.is_action_just_pressed("ui_accept")):
 			impulse()
-	if (isOnGround && velocity.y > 0):
+	if (GameStatus.isLanded && velocity.y > 0):
 		velocity.y = 0
 
 # projectile can make a little impulse to stay in the air longer
@@ -45,20 +44,19 @@ func shoot() -> void:
 	velocity.x += 200
 
 func _on_Catapult_body_entered(_body: Area2D) -> void:
-	print("_on_Catapult_body_entered")
+	print("_on_Catapult_body_entered" + _body.name)
 	isCollidingWithCatapult = true
 
 func _on_Catapult_body_exited(_body: Area2D) -> void:
-	print("_on_Catapult_body_exited")
+	print("_on_Catapult_body_exited" + _body.name)
 	isCollidingWithCatapult = false
 	
 func _on_Ground_body_entered(_body: Area2D) -> void:
-	print("_on_Ground_body_entered")
-	isOnGround = true
-	if (GameStatus.isShooted):
+	print("_on_Ground_body_entered: " + _body.name)
+	if ("projectile" in _body.name.to_lower()):
 		GameStatus.isLanded = true
 	
 func _on_Ground_body_exited(_body: Area2D) -> void:
-	print("_on_Ground_body_exited")
-	isOnGround = false
+	print("_on_Ground_body_exited" + _body.name)
+	GameStatus.isLanded = false
 	

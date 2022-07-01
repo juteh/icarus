@@ -19,10 +19,9 @@ func _process(_delta):
 		winTimer.start()
 
 func _physics_process(_delta) -> void:
-	if (Input.is_action_just_pressed("ui_accept") && !GameStatus.projectileExist):
+	if (Input.is_action_just_pressed("ui_accept") && !GameStatus.projectileInstance):
 		print("SPAWN")
 		GameStatus.spawnProjectile()
-		GameStatus.projectileExist = true
 	elif (Input.is_action_just_pressed("ui_accept") && !GameStatus.hasJumped):
 		print("JUMP")
 		GameStatus.projectileInstance.jump()
@@ -36,7 +35,6 @@ func _physics_process(_delta) -> void:
 func _on_WinTimer_timeout():
 	print("RESET")
 	winTimer.stop()
-	
 	GameStatus.startNextRound()
 	camera.position = cameraStartPosition
 	
