@@ -48,7 +48,6 @@ position = Vector2( 999, 470 )
 script = ExtResource( 8 )
 
 [node name="Ground" parent="Grounds" instance=ExtResource( 2 )]
-script = null
 
 [node name="SpawnPointGround" type="Position2D" parent="Grounds"]
 rotation = 1.5708

@@ -14,6 +14,7 @@ var catapult: Area2D = null
 var ground: Area2D = null
 var projectileInstance: Area2D = null
 var spawnPointProjectile: Position2D = null
+var groundManager = null
 
 func spawnProjectile():
 	projectileInstance = Projectile.instance()
@@ -39,6 +40,7 @@ func startNextRound():
 	hasJumped = false
 	isShooted = false
 	isLanded = false
+	groundManager.remove_grounds()
 	if (GameStatus.projectileResults.size() == GameStatus.MAX_ATTEMPTS):
 		var error_change_scene = get_tree().change_scene("res://nodes/ResultScreen/ResultScreen.tscn")
 		if (error_change_scene != 0):

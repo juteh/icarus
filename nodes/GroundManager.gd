@@ -8,15 +8,19 @@ onready var firstGround: Area2D = $Ground
 # the distance between the new grounds
 var spawnLength: float;
 var listOfGrounds = []
+var startPointGround: Vector2 
 
 func _ready():
 	GameStatus.ground = firstGround
+	GameStatus.groundManager = self
 	listOfGrounds.append(firstGround)
 	spawnLength = spawnPointGround.global_position.x
-	print(spawnPointGround.position);
+	startPointGround = spawnPointGround.global_position
+	print(spawnPointGround.position)
 
 func _physics_process(_delta):
 	if ((spawnPointGround.global_position.x - 10.0) < camera.global_position.x && camera.global_position.x < (spawnPointGround.global_position.x + 10.0)):
+		print("SPAWN")
 		var newGround: Area2D = Ground.instance()
 		newGround.position = Vector2(spawnPointGround.global_position.x + spawnLength, spawnPointGround.position.y)
 		newGround.connect("area_entered", GameStatus.projectileInstance, "_on_Ground_body_entered")
@@ -26,8 +30,14 @@ func _physics_process(_delta):
 		listOfGrounds.append(newGround)
 		
 # TODO use remove_grounds to clear the level
-func _remove_grounds():
+func remove_grounds():
+	print(spawnPointGround.global_position.x)
+	print(startPointGround.x)
+	spawnPointGround.global_position.x = startPointGround.x
+	print(range(1, listOfGrounds.size()))
+	print(listOfGrounds[1])
 	for i in range(1, listOfGrounds.size()):
 		print(listOfGrounds[i]);
-		listOfGrounds[i].destroy
+		var element = listOfGrounds[i]
+		element.queue_free()
 	listOfGrounds = [firstGround]
