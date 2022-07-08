@@ -20,7 +20,7 @@ func _process(_delta):
 
 func _physics_process(_delta) -> void:
 	if (Input.is_action_just_pressed("ui_accept") && !GameStatus.projectileInstance):
-		print("SPAWN")
+		print("START")
 		GameStatus.spawnProjectile()
 	elif (Input.is_action_just_pressed("ui_accept") && !GameStatus.hasJumped):
 		print("JUMP")

@@ -16,7 +16,6 @@ func _ready():
 	listOfGrounds.append(firstGround)
 	spawnLength = spawnPointGround.global_position.x
 	startPointGround = spawnPointGround.global_position
-	print(spawnPointGround.position)
 
 func _physics_process(_delta):
 	if ((spawnPointGround.global_position.x - 10.0) < camera.global_position.x && camera.global_position.x < (spawnPointGround.global_position.x + 10.0)):
@@ -29,15 +28,10 @@ func _physics_process(_delta):
 		add_child(newGround)
 		listOfGrounds.append(newGround)
 		
-# TODO use remove_grounds to clear the level
 func remove_grounds():
-	print(spawnPointGround.global_position.x)
-	print(startPointGround.x)
 	spawnPointGround.global_position.x = startPointGround.x
-	print(range(1, listOfGrounds.size()))
-	print(listOfGrounds[1])
-	for i in range(1, listOfGrounds.size()):
-		print(listOfGrounds[i]);
-		var element = listOfGrounds[i]
-		element.queue_free()
-	listOfGrounds = [firstGround]
+	if (listOfGrounds.size() > 1):
+		for i in range(1, listOfGrounds.size()):
+			var element = listOfGrounds[i]
+			element.queue_free()
+		listOfGrounds = [firstGround]
