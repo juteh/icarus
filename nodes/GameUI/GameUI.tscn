@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://nodes/GameUI/GameUI.gd" type="Script" id=1]
+[ext_resource path="res://ASSETS/rechteck_weiss.png" type="Texture" id=2]
 
 [node name="GameUI" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -42,7 +43,7 @@ margin_left = 842.0
 margin_top = 3.0
 margin_right = 1024.0
 margin_bottom = 40.0
-text = "Runde 1"
+text = "Round 1"
 
 [node name="MaxFlapsLabel" type="Label" parent="."]
 margin_left = 840.0
@@ -50,3 +51,14 @@ margin_top = 27.0
 margin_right = 923.0
 margin_bottom = 41.0
 text = "Max Flaps 10"
+
+[node name="MaxFlapsProgressBar" type="TextureProgress" parent="."]
+margin_left = 976.0
+margin_top = 13.0
+margin_right = 1076.0
+margin_bottom = 213.0
+rect_scale = Vector2( 0.3, 1 )
+max_value = 10.0
+value = 10.0
+texture_progress = ExtResource( 2 )
+fill_mode = 3

@@ -6,6 +6,7 @@ onready var angleLabel: Label = $AngleLabel
 onready var scoreLabel: Label = $ScoreLabel
 onready var roundLabel: Label = $RoundLabel
 onready var maxFlapsLabel: Label = $MaxFlapsLabel
+onready var maxFlapsProgressBar: TextureProgress = $MaxFlapsProgressBar
 
 func _ready():
 	scoreLabel.visible = false
@@ -19,6 +20,7 @@ func _process(_delta):
 		distanceLabelY.text = "Distance Y: " + str(GameStatus.projectileInstance.position.y)
 		angleLabel.text = "Angle: " + str(GameStatus.projectileInstance.rotation)
 		maxFlapsLabel.text = "Max Flaps: " + str(GameStatus.projectileInstance.impulseAttempts)
+		maxFlapsProgressBar.value = GameStatus.projectileInstance.impulseAttempts
 	if (GameStatus.isLanded):
 		scoreLabel.text = str(stepify(GameStatus.projectileInstance.position.x / 100, 0.01)) + "m!"
 		scoreLabel.visible = true

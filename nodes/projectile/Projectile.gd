@@ -44,19 +44,15 @@ func shoot() -> void:
 	velocity.x += 200
 
 func _on_Catapult_body_entered(_body: Area2D) -> void:
-	print("_on_Catapult_body_entered" + _body.name)
 	isCollidingWithCatapult = true
 
 func _on_Catapult_body_exited(_body: Area2D) -> void:
-	print("_on_Catapult_body_exited" + _body.name)
 	isCollidingWithCatapult = false
 	
 func _on_Ground_body_entered(_body: Area2D) -> void:
-	print("_on_Ground_body_entered: " + _body.name)
 	if ("projectile" in _body.name.to_lower()):
 		GameStatus.isLanded = true
 	
 func _on_Ground_body_exited(_body: Area2D) -> void:
-	print("_on_Ground_body_exited" + _body.name)
 	GameStatus.isLanded = false
 	

@@ -20,20 +20,16 @@ func _process(_delta):
 
 func _physics_process(_delta) -> void:
 	if (Input.is_action_just_pressed("ui_accept") && !GameStatus.projectileInstance):
-		print("START")
 		GameStatus.spawnProjectile()
 	elif (Input.is_action_just_pressed("ui_accept") && !GameStatus.hasJumped):
-		print("JUMP")
 		GameStatus.projectileInstance.jump()
 		GameStatus.hasJumped = true
 	elif (Input.is_action_just_pressed("ui_accept") && !GameStatus.isShooted && GameStatus.projectileInstance.isCollidingWithCatapult):
-		print("SHOOT")
 		camera.current = true
 		GameStatus.projectileInstance.shoot()
 		GameStatus.isShooted = true
 
 func _on_WinTimer_timeout():
-	print("RESET")
 	winTimer.stop()
 	GameStatus.startNextRound()
 	camera.position = cameraStartPosition
