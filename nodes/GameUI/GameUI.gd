@@ -19,7 +19,7 @@ func _process(_delta):
 		distanceLabelX.text = "Distance X: " + str(GameStatus.projectileInstance.position.x)
 		distanceLabelY.text = "Distance Y: " + str(GameStatus.projectileInstance.position.y)
 		angleLabel.text = "Angle: " + str(GameStatus.projectileInstance.rotation)
-		maxFlapsLabel.text = "Max Flaps: " + str(GameStatus.projectileInstance.impulseAttempts)
+		maxFlapsLabel.text = "Boost: " + str(GameStatus.projectileInstance.impulseAttempts)
 		maxFlapsProgressBar.value = GameStatus.projectileInstance.impulseAttempts
 	if (GameStatus.isLanded):
 		scoreLabel.text = str(stepify(GameStatus.projectileInstance.position.x / 100, 0.01)) + "m!"

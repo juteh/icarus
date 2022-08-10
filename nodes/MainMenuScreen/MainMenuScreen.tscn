@@ -1,0 +1,131 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://ASSETS/fonts/VCR_OSD_MONO_1.001.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://nodes/MainMenuScreen/MainMenuScreen.gd" type="Script" id=2]
+[ext_resource path="res://nodes/projectile/Projectile.tscn" type="PackedScene" id=3]
+[ext_resource path="res://nodes/catapult/Catapult.tscn" type="PackedScene" id=4]
+[ext_resource path="res://nodes/Items/JumpBoard/JumpBoard.tscn" type="PackedScene" id=5]
+[ext_resource path="res://nodes/Items/RechargeFlaps/RechargeFlapsItem.tscn" type="PackedScene" id=6]
+[ext_resource path="res://nodes/Items/SpeedItem/SpeedItem.tscn" type="PackedScene" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 28
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 28
+font_data = ExtResource( 1 )
+
+[node name="MainMenuScreen" type="CanvasLayer"]
+script = ExtResource( 2 )
+
+[node name="Headline" type="Label" parent="."]
+margin_left = 1.0
+margin_top = -2.0
+margin_right = 147.0
+margin_bottom = 79.0
+custom_fonts/font = SubResource( 1 )
+text = "Main Menu"
+
+[node name="ExitButton" type="Button" parent="."]
+margin_left = 219.0
+margin_top = 478.0
+margin_right = 369.0
+margin_bottom = 536.0
+rect_pivot_offset = Vector2( 109, 38 )
+text = "Exit"
+
+[node name="StartButton" type="Button" parent="."]
+margin_left = 585.0
+margin_top = 478.0
+margin_right = 735.0
+margin_bottom = 536.0
+rect_pivot_offset = Vector2( 109, 38 )
+text = "Start"
+
+[node name="Label1" type="Label" parent="."]
+margin_left = 75.0
+margin_top = 48.0
+margin_right = 597.0
+margin_bottom = 81.0
+custom_fonts/font = SubResource( 2 )
+text = "Instruction:"
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 76.0
+margin_top = 104.0
+margin_right = 668.0
+margin_bottom = 137.0
+custom_fonts/font = SubResource( 2 )
+text = "Press \"Space\" to spawn the projectile"
+
+[node name="Label3" type="Label" parent="."]
+margin_left = 76.0
+margin_top = 150.0
+margin_right = 1068.0
+margin_bottom = 183.0
+custom_fonts/font = SubResource( 2 )
+text = "Press \"Space\" again to jump and again near the catapult to fly"
+
+[node name="Label4" type="Label" parent="."]
+margin_left = 76.0
+margin_top = 197.0
+margin_right = 1068.0
+margin_bottom = 230.0
+custom_fonts/font = SubResource( 2 )
+text = "Press \"Space\" in the air to boost. Max 10 boosts"
+
+[node name="Label5" type="Label" parent="."]
+margin_left = 76.0
+margin_top = 237.0
+margin_right = 1068.0
+margin_bottom = 270.0
+custom_fonts/font = SubResource( 2 )
+text = "Items:"
+
+[node name="Label6" type="Label" parent="."]
+margin_left = 78.0
+margin_top = 280.0
+margin_right = 1070.0
+margin_bottom = 313.0
+custom_fonts/font = SubResource( 2 )
+text = "Shoot up in the air from the ground"
+
+[node name="Label7" type="Label" parent="."]
+margin_left = 78.0
+margin_top = 326.0
+margin_right = 1070.0
+margin_bottom = 359.0
+custom_fonts/font = SubResource( 2 )
+text = "Get ext extra speed in the air"
+
+[node name="Label8" type="Label" parent="."]
+margin_left = 78.0
+margin_top = 384.0
+margin_right = 1070.0
+margin_bottom = 417.0
+custom_fonts/font = SubResource( 2 )
+text = "Recharge 3 boosts"
+
+[node name="Projectile" parent="." instance=ExtResource( 3 )]
+position = Vector2( 766, 115 )
+script = null
+
+[node name="Catapult" parent="." instance=ExtResource( 4 )]
+position = Vector2( 1235, 155 )
+script = null
+
+[node name="RechargeFlapsItem" parent="." instance=ExtResource( 6 )]
+position = Vector2( 696, 399 )
+script = null
+
+[node name="JumpBoard" parent="." instance=ExtResource( 5 )]
+position = Vector2( 698, 291 )
+script = null
+
+[node name="SpeedItem" parent="." instance=ExtResource( 7 )]
+position = Vector2( 698, 340 )
+script = null
+
+[connection signal="pressed" from="ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]

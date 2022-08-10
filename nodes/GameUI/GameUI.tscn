@@ -50,7 +50,7 @@ margin_left = 840.0
 margin_top = 27.0
 margin_right = 923.0
 margin_bottom = 41.0
-text = "Max Flaps 10"
+text = "Boost: 10"
 
 [node name="MaxFlapsProgressBar" type="TextureProgress" parent="."]
 margin_left = 976.0
